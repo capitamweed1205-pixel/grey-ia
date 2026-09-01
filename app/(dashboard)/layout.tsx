@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 export default function DashLayout({ children }: { children: React.ReactNode }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
+
   const navegarAtras = () => window.history.back();
   const navegarLante = () => window.history.forward();
 
@@ -11,43 +12,44 @@ export default function DashLayout({ children }: { children: React.ReactNode }) 
     { name: 'MI_PERFIL', icon: '👤' },
     { name: 'RECARGAR_CREDITOS', icon: '⚡' },
     { name: 'ADMINISTRACIÓN', icon: '🛡️' },
-    { name: 'SOPORTE_TÉCNICO', icon: '🔧' },
     { name: 'CERRAR_SESIÓN', icon: '🚪' },
   ];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#000', color: '#fff', fontFamily: 'sans-serif', overflow: 'hidden' }}>
       
+      {/* CABECERA DE CONTROL */}
       <header style={{ borderBottom: '1px solid #1c1c1c', backgroundColor: '#000', zIndex: 110, padding: '10px 15px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {/* NAVEGACIÓN IZQUIERDA */}
+          
+          {/* IZQUIERDA: NAVEGACIÓN */}
           <div style={{ display: 'flex', gap: '5px' }}>
             <button onClick={navegarAtras} style={navArrow}> ‹ </button>
             <button onClick={navegarLante} style={navArrow}> › </button>
           </div>
 
-          {/* LOGO Y ENLACE ESTUDIO AL CENTRO */}
+          {/* CENTRO: LOGO Y ACCESO A ESTUDIO */}
           <div style={{ textAlign: 'center' }}>
             <Link href="/dashboard" style={{ textDecoration: 'none', color: '#fff' }}>
               <div style={{ fontSize: '22px', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px' }}>GREY</div>
             </Link>
-            <Link href="/studio" style={{ textDecoration: 'none', color: '#fff', display: 'block', marginTop: '2px' }}>
+            <Link href="/studio" style={{ textDecoration: 'none', display: 'block', marginTop: '2px' }}>
               <div style={{ fontSize: '10px', fontWeight: 'bold', letterSpacing: '4px', color: '#888' }}>ESTUDIO</div>
             </Link>
           </div>
 
-          {/* BOTÓN AJUSTES DERECHA */}
+          {/* DERECHA: AJUSTES */}
           <button onClick={() => setMenuAbierto(!menuAbierto)} style={menuBtn}> ☰ </button>
         </div>
       </header>
 
-      {/* MENÚ DE AJUSTES (SOLO CONFIGURACIÓN) */}
+      {/* MENÚ DE CONFIGURACIÓN LATERAL */}
       {menuAbierto && (
         <>
           <div onClick={() => setMenuAbierto(false)} style={overlayStyle} />
           <div style={sidebarRightStyle}>
             <div style={{ padding: '30px 20px' }}>
-              <h2 style={{ fontSize: '12px', fontWeight: '900', color: '#444', letterSpacing: '2px', marginBottom: '30px' }}>CONFIGURACIÓN_SISTEMA</h2>
+              <h2 style={{ fontSize: '12px', fontWeight: '900', color: '#444', letterSpacing: '2px', marginBottom: '30px' }}>CONFIGURACIÓN</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {settings.map((s) => (
                   <div key={s.name} style={settingItem}>
@@ -63,7 +65,7 @@ export default function DashLayout({ children }: { children: React.ReactNode }) 
       <main style={{ flex: 1, overflowY: 'auto', width: '100%' }}>{children}</main>
 
       <footer style={{ padding: '10px 20px', backgroundColor: '#050505', borderTop: '1px solid #1c1c1c', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontSize: '9px', color: '#333' }}>GREY_V5.2_READY</span>
+        <span style={{ fontSize: '9px', color: '#333' }}>GREY_OS_V5.5</span>
         <span style={{ fontSize: '12px', fontWeight: '900' }}>25.00 CRD</span>
       </footer>
     </div>
