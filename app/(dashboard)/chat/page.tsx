@@ -8,23 +8,32 @@ export default function ChatPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#000' }}>
       <div style={{ flex: 1, padding: '20px', overflowY: 'auto' }}>
-        <div style={{ backgroundColor: '#111', padding: '15px', borderRadius: '15px', maxWidth: '85%', border: '1px solid #222', color: '#fff', fontSize: '14px' }}>
+        <div style={{ backgroundColor: '#111', padding: '15px', borderRadius: '18px', maxWidth: '85%', border: '1px solid #222', fontSize: '15px' }}>
           SISTEMA_GREY CONECTADO. ¿Qué misión tenemos hoy?
         </div>
       </div>
 
-      {/* BARRA FLOTANTE CON ACCESO A BIBLIOTECA */}
-      <div style={{ padding: '20px 20px 40px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#1a1a1a', borderRadius: '40px', padding: '8px 12px', gap: '12px', border: '1px solid #333' }}>
-          
-          {/* EL CÍRCULO A LA IZQUIERDA (ACCESO A GUARDADOS) */}
+      {/* BARRA DE CHAT FLOTANTE */}
+      <div style={{ position: 'fixed', bottom: '30px', left: '15px', right: '15px', zIndex: 500 }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          backgroundColor: 'rgba(30, 30, 30, 0.7)', 
+          backdropFilter: 'blur(20px)', 
+          borderRadius: '40px', 
+          padding: '8px 10px', 
+          gap: '10px',
+          border: '1px solid rgba(255,255,255,0.1)',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
+        }}>
+          {/* CÍRCULO BIBLIOTECA (MI CONTENIDO) */}
           <Link href="/library" style={{ textDecoration: 'none' }}>
-            <div style={{ width: '38px', height: '38px', borderRadius: '50%', backgroundColor: '#333', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              <img src="https://api.dicebear.com/7.x/shapes/svg?seed=Grey" style={{ width: '100%' }} />
+            <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#fff', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Felix" style={{ width: '80%' }} />
             </div>
           </Link>
 
-          <button style={{ background: '#fff', border: 'none', width: '32px', height: '32px', borderRadius: '50%', fontSize: '18px', fontWeight: 'bold' }}>+</button>
+          <button style={{ background: '#333', border: 'none', width: '35px', height: '35px', borderRadius: '50%', color: '#fff', fontSize: '20px' }}>+</button>
 
           <input 
             value={input} onChange={(e) => setInput(e.target.value)}
@@ -32,9 +41,9 @@ export default function ChatPage() {
             placeholder="(Generado por IA)"
           />
 
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <span>⚙️</span>
-            <span style={{ fontWeight: 'bold' }}>|||</span>
+          <div style={{ display: 'flex', gap: '15px', marginRight: '10px' }}>
+            <span style={{ fontSize: '18px', opacity: 0.6 }}>⚙️</span>
+            <span style={{ fontSize: '18px' }}>|||</span>
           </div>
         </div>
       </div>
