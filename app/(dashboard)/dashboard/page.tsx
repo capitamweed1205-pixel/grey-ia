@@ -1,40 +1,36 @@
 "use client"
-import Link from 'next/link';
-
-export default function CentralHub() {
-  const tools = [
-    { id: '1', name: 'CHIP_CHAT', desc: 'IA Conversacional', link: '/chat', cat: 'BRAIN' },
-    { id: '2', name: 'VISUAL_GEN', desc: 'Imagen Ultra HD', link: '/images', cat: 'IMAGE' },
-    { id: '3', name: 'GREY_STUDIO', desc: 'Editor Pro Foto/Vídeo', link: '/editor', cat: 'PRO' },
-    { id: '4', name: 'CINEMATIC_V2', desc: 'Vídeo Real Realista', link: '/video', cat: 'VIDEO' },
-    { id: '5', name: 'MOTION_ENGINE', desc: 'Animar Fotos (I2V)', link: '/img2video', cat: 'VIDEO' },
-    { id: '6', name: 'FACE_SWAP', desc: 'Cambio de Rostros', link: '/faceswap', cat: 'IMAGE' },
-    { id: '7', name: 'REMASTER_4K', desc: 'Calidad Máxima', link: '/remaster', cat: 'IMAGE' },
-    { id: '8', name: 'MUSIC_GEN', desc: 'Creador de Beats', link: '/music', cat: 'AUDIO' },
-    { id: '9', name: 'LOGO_PRO', desc: 'Diseño de Marcas', link: '/logo', cat: 'DESIGN' },
-    { id: '10', name: 'VIRAL_LAB', desc: 'Algoritmo Social', link: '/viral', cat: 'MARKET' },
-    { id: '11', name: 'CAPTIONS_AI', desc: 'Subtítulos Pro', link: '/subtitles', cat: 'VIDEO' },
+export default function DiscoveryPage() {
+  const feed = [
+    { id: 1, type: 'VIDEO', user: '@Capitan', prompt: 'Cyberpunk Tokyo Lofi', url: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400' },
+    { id: 2, type: 'IMAGE', user: '@GreyIA', prompt: 'Neon Samurai 4k', url: 'https://images.unsplash.com/photo-1544465531-028d6238ef42?w=400' },
+    { id: 3, type: 'VIDEO', user: '@UserX', prompt: 'Nebula Space Journey', url: 'https://images.unsplash.com/photo-1464802686167-b939a6910659?w=400' },
+    { id: 4, type: 'IMAGE', user: '@Visual', prompt: 'Minimalist Architecture', url: 'https://images.unsplash.com/photo-1518005020252-3b8c5c70ad45?w=400' },
   ];
 
   return (
-    <div style={{ padding: '25px', backgroundColor: '#000' }}>
-      <header style={{ marginBottom: '30px', borderLeft: '3px solid #fff', paddingLeft: '15px' }}>
-        <h1 style={{ fontSize: '28px', fontWeight: '900', fontStyle: 'italic', margin: 0 }}>CENTRAL_HUB</h1>
-        <p style={{ color: '#444', fontSize: '9px', letterSpacing: '2px', fontWeight: 'bold' }}>MODULOS_DE_EJECUCION_V3</p>
+    <div style={{ padding: '20px', backgroundColor: '#000' }}>
+      <header style={{ marginBottom: '25px' }}>
+        <h2 style={{ fontSize: '20px', fontWeight: '900', fontStyle: 'italic', margin: 0 }}>EXPLORAR_TENDENCIAS</h2>
+        <p style={{ color: '#444', fontSize: '9px', fontWeight: 'bold', letterSpacing: '2px' }}>LAS MEJORES CREACIONES DE LA COMUNIDAD</p>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-        {tools.map((tool) => (
-          <Link href={tool.link} key={tool.id} style={{ textDecoration: 'none' }}>
-            <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #161616', padding: '15px', borderRadius: '15px', height: '110px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                <span style={{ fontSize: '7px', color: '#fff', backgroundColor: tool.cat === 'PRO' ? '#333' : '#111', padding: '2px 5px', borderRadius: '3px', fontWeight: 'bold' }}>{tool.cat}</span>
-                <h3 style={{ color: '#fff', fontSize: '13px', fontWeight: '900', margin: '8px 0 2px 0' }}>{tool.name}</h3>
-                <p style={{ color: '#444', fontSize: '9px', lineHeight: '1.1' }}>{tool.desc}</p>
-              </div>
-              <div style={{ textAlign: 'right', color: '#222', fontSize: '10px' }}> > </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+        {feed.map(item => (
+          <div key={item.id} style={{ backgroundColor: '#0a0a0a', border: '1px solid #161616', borderRadius: '15px', overflow: 'hidden', position: 'relative' }}>
+            <img src={item.url} style={{ width: '100%', height: '180px', objectFit: 'cover', opacity: 0.7 }} />
+            
+            <div style={{ position: 'absolute', top: '10px', left: '10px', backgroundColor: 'rgba(0,0,0,0.6)', padding: '3px 6px', borderRadius: '4px', fontSize: '7px', fontWeight: 'bold' }}>
+              {item.type}
             </div>
-          </Link>
+
+            <div style={{ padding: '10px' }}>
+              <p style={{ fontSize: '9px', fontWeight: 'bold', color: '#fff', margin: '0 0 4px 0' }}>{item.user}</p>
+              <p style={{ fontSize: '8px', color: '#555', margin: '0 0 10px 0', height: '20px', overflow: 'hidden' }}>"{item.prompt}"</p>
+              <button style={{ width: '100%', backgroundColor: '#fff', color: '#000', border: 'none', padding: '8px', borderRadius: '6px', fontSize: '9px', fontWeight: '900' }}>
+                USAR_ESTILO
+              </button>
+            </div>
+          </div>
         ))}
       </div>
     </div>
