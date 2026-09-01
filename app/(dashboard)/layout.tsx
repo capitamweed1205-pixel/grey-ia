@@ -3,29 +3,26 @@ import Link from 'next/link';
 
 export default function DashLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#000', color: '#fff', fontFamily: 'sans-serif' }}>
-      {/* Barra lateral */}
-      <aside style={{ width: '220px', borderRight: '1px solid #222', padding: '20px', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ fontSize: '24px', fontWeight: '900', fontStyle: 'italic', marginBottom: '40px' }}>GREY</div>
-        
-        <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <Link href="/chat" style={{ color: '#fff', textDecoration: 'none', fontSize: '14px', fontWeight: 'bold', padding: '12px', backgroundColor: '#111', borderRadius: '10px' }}>
-             > CHAT_IA
-          </Link>
-          <Link href="/images" style={{ color: '#fff', textDecoration: 'none', fontSize: '14px', fontWeight: 'bold', padding: '12px', backgroundColor: '#111', borderRadius: '10px' }}>
-             > IMAGENES
-          </Link>
-        </nav>
-
-        <div style={{ padding: '15px', backgroundColor: '#050505', border: '1px solid #222', borderRadius: '10px' }}>
-          <p style={{ fontSize: '9px', color: '#555', margin: '0' }}>ENERGÍA</p>
-          <p style={{ fontSize: '18px', fontWeight: '900', margin: '0' }}>25.00</p>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#000', color: '#fff', fontFamily: 'sans-serif' }}>
+      {/* BARRA SUPERIOR PARA MÓVIL */}
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 20px', borderBottom: '1px solid #1c1c1c', backgroundColor: '#000', position: 'sticky', top: 0, zIndex: 10 }}>
+        <div style={{ fontSize: '22px', fontWeight: '900', fontStyle: 'italic', trackingTighter: '-1px' }}>GREY</div>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <Link href="/chat" style={{ color: '#fff', textDecoration: 'none', fontSize: '11px', fontWeight: 'bold', padding: '8px 15px', border: '1px solid #333', borderRadius: '8px', backgroundColor: '#0a0a0a' }}>CHAT</Link>
+          <Link href="/images" style={{ color: '#fff', textDecoration: 'none', fontSize: '11px', fontWeight: 'bold', padding: '8px 15px', border: '1px solid #333', borderRadius: '8px', backgroundColor: '#0a0a0a' }}>IMG</Link>
         </div>
-      </aside>
+      </header>
 
-      <main style={{ flex: 1, overflow: 'hidden' }}>
+      {/* CONTENIDO PRINCIPAL */}
+      <main style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
         {children}
       </main>
+
+      {/* BARRA DE CRÉDITOS ABAJO */}
+      <footer style={{ padding: '12px 20px', backgroundColor: '#050505', borderTop: '1px solid #1c1c1c', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontSize: '10px', color: '#555', fontWeight: 'bold', letterSpacing: '1px' }}>ENERGÍA DISPONIBLE</span>
+        <span style={{ fontSize: '14px', fontWeight: '900', color: '#fff' }}>25.00</span>
+      </footer>
     </div>
   )
 }
