@@ -10,21 +10,26 @@ export default function DashLayout({ children }: { children: React.ReactNode }) 
   const settings = [
     { name: 'MI_CUENTA_PRO', icon: '👤' },
     { name: 'GESTIÓN_DE_CRÉDITOS', icon: '⚡' },
-    { name: 'ADMINISTRACIÓN', icon: '🛡️' },
+    { name: 'PANEL_CONTROL_ADMIN', icon: '🛡️' },
+    { name: 'NOTIFICACIONES', icon: '🔔' },
+    { name: 'IDIOMA_SISTEMA', icon: '🌐' },
     { name: 'CERRAR_SESIÓN', icon: '🚪' },
   ];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#000', color: '#fff', fontFamily: 'sans-serif', overflow: 'hidden' }}>
       
+      {/* CABECERA TÉCNICA */}
       <header style={{ borderBottom: '1px solid #161616', backgroundColor: '#000', zIndex: 1000, padding: '15px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           
+          {/* NAVEGACIÓN IZQUIERDA */}
           <div style={{ display: 'flex', gap: '8px' }}>
             <button onClick={navegarAtras} style={navIcon}> ‹ </button>
             <button onClick={navegarLante} style={navIcon}> › </button>
           </div>
 
+          {/* LOGO CENTRAL Y ESTUDIO CREATIVO */}
           <div style={{ textAlign: 'center' }}>
             <Link href="/dashboard" style={{ textDecoration: 'none', color: '#fff' }}>
               <div style={{ fontSize: '24px', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px' }}>GREY</div>
@@ -34,6 +39,7 @@ export default function DashLayout({ children }: { children: React.ReactNode }) 
             </Link>
           </div>
 
+          {/* MENÚ AJUSTES DERECHA */}
           <button onClick={() => setMenuAbierto(true)} style={menuToggle}>
             <div style={{ width: '18px', height: '2px', backgroundColor: '#000', margin: '3px 0' }}></div>
             <div style={{ width: '18px', height: '2px', backgroundColor: '#000', margin: '3px 0' }}></div>
@@ -42,6 +48,7 @@ export default function DashLayout({ children }: { children: React.ReactNode }) 
         </div>
       </header>
 
+      {/* MODAL DE AJUSTES (DESDE LA DERECHA) */}
       {menuAbierto && (
         <div style={sidebarOverlay}>
           <div style={sidebarContent}>
