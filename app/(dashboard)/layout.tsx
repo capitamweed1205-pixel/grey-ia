@@ -2,14 +2,14 @@
 import Link from 'next/link';
 
 export default function DashLayout({ children }: { children: React.ReactNode }) {
-  // Funciones para navegar atrás y adelante
-  const goBack = () => window.history.back();
-  const goForward = () => window.history.forward();
+  // Funciones para las flechas de navegación
+  const navegarAtras = () => window.history.back();
+  const navegarLante = () => window.history.forward();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#000', color: '#fff', fontFamily: 'sans-serif' }}>
       
-      {/* BARRA SUPERIOR CON NAVEGACIÓN */}
+      {/* CABECERA DE CONTROL TOTAL */}
       <header style={{ 
         borderBottom: '1px solid #1c1c1c', 
         backgroundColor: '#000', 
@@ -18,77 +18,82 @@ export default function DashLayout({ children }: { children: React.ReactNode }) 
         zIndex: 100,
         padding: '10px 15px'
       }}>
+        {/* FILA 1: NAVEGACIÓN Y LOGO */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
           
-          {/* BOTONES ATRÁS/LANTE */}
+          {/* BOTONES TÉCNICOS ATRÁS/LANTE */}
           <div style={{ display: 'flex', gap: '5px' }}>
-            <button onClick={goBack} style={navArrowStyle}> ‹ </button>
-            <button onClick={goForward} style={navArrowStyle}> › </button>
+            <button onClick={navegarAtras} style={navArrow}> ‹ </button>
+            <button onClick={navegarLante} style={navArrow}> › </button>
           </div>
 
-          {/* LOGO CENTRAL */}
-          <Link href="/dashboard" style={{ textDecoration: 'none', color: '#fff' }}>
-            <div style={{ fontSize: '20px', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px' }}>GREY</div>
+          {/* LOGO QUE SIEMPRE TE SACA AL HUB */}
+          <Link href="/dashboard" style={{ textDecoration: 'none' }}>
+            <div style={{ color: '#fff', fontSize: '20px', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px' }}>GREY</div>
           </Link>
 
-          {/* BOTÓN HUB */}
+          {/* BOTÓN "SALIR" MUY CLARO */}
           <Link href="/dashboard" style={{ 
             color: '#000', 
             textDecoration: 'none', 
-            fontSize: '9px', 
-            fontWeight: 'bold', 
-            padding: '8px 12px', 
+            fontSize: '10px', 
+            fontWeight: '900', 
+            padding: '8px 15px', 
             backgroundColor: '#fff', 
             borderRadius: '6px' 
-          }}>HUB</Link>
+          }}>SALIR_AL_HUB</Link>
         </div>
 
-        {/* BARRA DE ACCESO RÁPIDO DESLIZABLE */}
+        {/* FILA 2: ACCESO DIRECTO ENTRE HERRAMIENTAS (DESLIZABLE) */}
         <div style={{ 
           display: 'flex', 
           gap: '8px', 
           overflowX: 'auto', 
           padding: '5px 0', 
           whiteSpace: 'nowrap',
-          msOverflowStyle: 'none',
-          scrollbarWidth: 'none'
+          WebkitOverflowScrolling: 'touch'
         }}>
-          <Link href="/chat" style={quickBtn}>CHAT</Link>
-          <Link href="/images" style={quickBtn}>IMG</Link>
-          <Link href="/video" style={quickBtn}>VIDEO</Link>
-          <Link href="/viral" style={quickBtn}>VIRAL</Link>
-          <Link href="/subtitles" style={quickBtn}>SUB</Link>
-          <Link href="/faceswap" style={quickBtn}>FACE</Link>
+          <Link href="/chat" style={toolBtn}>CHAT</Link>
+          <Link href="/images" style={toolBtn}>IMG</Link>
+          <Link href="/video" style={toolBtn}>VIDEO</Link>
+          <Link href="/img2video" style={toolBtn}>I2V</Link>
+          <Link href="/faceswap" style={toolBtn}>FACE</Link>
+          <Link href="/viral" style={toolBtn}>VIRAL</Link>
         </div>
       </header>
 
-      {/* CONTENIDO PRINCIPAL */}
-      <main style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
+      {/* AQUÍ SE MUESTRAN LAS HERRAMIENTAS */}
+      <main style={{ flex: 1, overflowY: 'auto', width: '100%', position: 'relative' }}>
         {children}
       </main>
 
-      {/* FOOTER */}
+      {/* ESTADO DE ENERGÍA ABAJO */}
       <footer style={{ padding: '12px 20px', backgroundColor: '#050505', borderTop: '1px solid #1c1c1c', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontSize: '9px', color: '#444', fontWeight: 'bold' }}>SYSTEM_V2.5</span>
-        <span style={{ fontSize: '13px', fontWeight: '900', color: '#fff' }}>25.00 CRD</span>
+        <span style={{ fontSize: '9px', color: '#444', fontWeight: 'bold' }}>SISTEMA_V2.8</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '9px', color: '#666', fontWeight: 'bold' }}>ENERGÍA</span>
+          <span style={{ fontSize: '14px', fontWeight: '900', color: '#fff' }}>25.00</span>
+        </div>
       </footer>
 
+      {/* ESTILO PARA OCULTAR LA BARRA DE SCROLL DE LOS BOTONES */}
       <style>{`
         header div::-webkit-scrollbar { display: none; }
+        * { box-sizing: border-box; }
       `}</style>
     </div>
   )
 }
 
-// Estilos de los botones nuevos de navegación
-const navArrowStyle = {
+// Estilos de los botones
+const navArrow = {
   backgroundColor: '#111',
   color: '#fff',
   border: '1px solid #222',
   borderRadius: '6px',
-  width: '32px',
-  height: '32px',
-  fontSize: '20px',
+  width: '35px',
+  height: '35px',
+  fontSize: '22px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -96,13 +101,14 @@ const navArrowStyle = {
   fontWeight: 'bold'
 };
 
-const quickBtn = {
+const toolBtn = {
   color: '#666',
   textDecoration: 'none',
   fontSize: '9px',
   fontWeight: 'bold',
-  padding: '6px 12px',
+  padding: '8px 14px',
   border: '1px solid #161616',
   borderRadius: '5px',
+  backgroundColor: '#0a0a0a',
   flexShrink: 0
 };
