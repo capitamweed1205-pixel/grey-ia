@@ -3,22 +3,45 @@ import { useState } from 'react';
 
 export default function ChatPage() {
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([{ role: 'ai', text: 'SISTEMA_GREY CONECTADO. La red neuronal está lista para procesar comandos.' }]);
+
+  const send = () => {
+    if (!input.trim()) return;
+    setMessages([...messages, { role: 'user', text: input }, { role: 'ai', text: 'MODO_DEMO: Procesando consulta...' }]);
+    setInput("");
+  };
+
   return (
-    <div style={{backgroundColor: '#000', color: '#fff', height: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'sans-serif'}}>
-      <div style={{flex: 1, padding: '20px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '15px'}}>
-        <div style={{backgroundColor: '#111', border: '1px solid #222', padding: '15px', borderRadius: '15px', maxWidth: '85%', fontSize: '14px', lineHeight: '1.5'}}>
-          SISTEMA_GREY CONECTADO. La red neuronal está lista para procesar comandos locales.
-        </div>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#000' }}>
+      {/* AREA DE MENSAJES */}
+      <div style={{ flex: 1, padding: '20px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+        {messages.map((m, i) => (
+          <div key={i} style={{ 
+            alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
+            backgroundColor: m.role === 'user' ? '#fff' : '#111',
+            color: m.role === 'user' ? '#000' : '#fff',
+            padding: '15px',
+            borderRadius: '18px',
+            maxWidth: '85%',
+            fontSize: '15px',
+            lineHeight: '1.4',
+            border: m.role === 'user' ? 'none' : '1px solid #222'
+          }}>
+            {m.text}
+          </div>
+        ))}
       </div>
-      <div style={{padding: '20px', backgroundColor: '#000'}}>
-        <div style={{backgroundColor: '#0a0a0a', border: '1px solid #1c1c1c', borderRadius: '20px', display: 'flex', padding: '5px'}}>
+
+      {/* INPUT ABAJO */}
+      <div style={{ padding: '20px', paddingBottom: '30px' }}>
+        <div style={{ display: 'flex', backgroundColor: '#0a0a0a', border: '1px solid #333', borderRadius: '30px', padding: '5px 5px 5px 20px', alignItems: 'center' }}>
           <input 
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            style={{flex: 1, backgroundColor: 'transparent', border: 'none', color: '#fff', padding: '15px', outline: 'none', fontSize: '16px'}}
+            style={{ flex: 1, backgroundColor: 'transparent', border: 'none', color: '#fff', padding: '12px 0', outline: 'none', fontSize: '16px' }}
             placeholder="Pregunta a GREY..."
           />
-          <button style={{backgroundColor: '#fff', color: '#000', border: 'none', padding: '10px 20px', borderRadius: '15px', fontWeight: 'bold', margin: '5px'}}>
+          <button onClick={send} style={{ backgroundColor: '#fff', color: '#000', border: 'none', padding: '12px 20px', borderRadius: '25px', fontWeight: 'bold', fontSize: '12px', marginLeft: '10px' }}>
             ENVIAR
           </button>
         </div>
