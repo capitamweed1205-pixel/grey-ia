@@ -9,26 +9,32 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white flex items-center justify-center px-6">
       <div className="w-full max-w-md text-center">
 
-        {/* LOGO CREI */}
+        {/* LOGOTIPO GREY IA */}
         <div className="mb-12">
-          <div className="inline-flex items-center justify-center">
-            <div className="text-7xl font-black tracking-[-0.08em] leading-none">
-              CREI
-            </div>
+          <div
+            className="text-7xl sm:text-8xl font-black tracking-[-0.09em]
+                       leading-none select-none"
+          >
+            GREY
           </div>
 
-          <div className="mt-3 text-xs tracking-[0.35em] text-white/40 uppercase">
-            Inteligencia creativa
+          <div
+            className="mt-1 text-2xl sm:text-3xl font-semibold
+                       tracking-[0.18em] text-white/90"
+          >
+            IA
           </div>
+
+          <div className="mx-auto mt-5 h-px w-20 bg-white/30" />
         </div>
 
-        {/* BOTONES */}
+        {/* ACCESO */}
         <div className="space-y-3">
 
           <button
             onClick={() => router.push("/auth/google")}
-            className="w-full h-14 rounded-2xl bg-white text-black font-semibold
-                       flex items-center justify-center gap-3
+            className="w-full h-14 rounded-2xl bg-white text-black
+                       font-semibold flex items-center justify-center gap-3
                        hover:bg-white/90 active:scale-[0.98] transition"
           >
             <span className="text-lg font-bold">G</span>
@@ -37,8 +43,8 @@ export default function Home() {
 
           <button
             onClick={() => router.push("/auth/apple")}
-            className="w-full h-14 rounded-2xl bg-white text-black font-semibold
-                       flex items-center justify-center gap-3
+            className="w-full h-14 rounded-2xl bg-white text-black
+                       font-semibold flex items-center justify-center gap-3
                        hover:bg-white/90 active:scale-[0.98] transition"
           >
             <span className="text-xl">●</span>
@@ -50,7 +56,7 @@ export default function Home() {
             className="w-full h-14 rounded-2xl border border-white/20
                        bg-white/[0.06] text-white font-semibold
                        flex items-center justify-center
-                       hover:bg-white/[0.1] active:scale-[0.98] transition"
+                       hover:bg-white/[0.10] active:scale-[0.98] transition"
           >
             Continuar con correo electrónico
           </button>
