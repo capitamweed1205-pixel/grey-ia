@@ -3,31 +3,20 @@ import Link from 'next/link';
 
 export default function StudioPage() {
   const tools = [
-    { name: 'CHIP_CHAT', link: '/chat', desc: 'IA Conversacional', cat: 'BRAIN' },
-    { name: 'VISUAL_GEN', link: '/images', desc: 'Imágenes 4K', cat: 'IMAGE' },
-    { name: 'CINEMATIC_V2', link: '/video', desc: 'Video con Sonido', cat: 'VIDEO' },
-    { name: 'STUDIO_PRO', link: '/editor', desc: 'Editor Foto/Vídeo', cat: 'EDIT' },
-    { name: 'MOTION_IA', link: '/img2video', desc: 'Animar Fotos', cat: 'VIDEO' },
-    { name: 'FACE_SWAP', link: '/faceswap', desc: 'Cambio de Rostros', cat: 'ROSTROS' },
-    { name: 'REMASTER_4K', link: '/remaster', desc: 'Limpieza HD', cat: 'CALIDAD' },
-    { name: 'MUSIC_GEN', link: '/music', desc: 'Creador de Beats', cat: 'AUDIO' },
-    { name: 'LOGO_PRO', link: '/logo', desc: 'Diseño de Marcas', cat: 'DISEÑO' },
-    { name: 'VIRAL_LAB', link: '/viral', desc: 'Estrategia Redes', cat: 'SOCIAL' },
-    { name: 'CAPTIONS_AI', link: '/subtitles', desc: 'Subtítulos Pro', cat: 'VIDEO' },
+    { name: 'Photo Edit', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', link: '/editor' },
+    { name: 'CHIP_CHAT', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500', link: '/chat' },
+    { name: 'Cinematic Video', img: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500', link: '/video' },
+    { name: 'Face Swap', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500', link: '/faceswap' },
   ];
 
   return (
-    <div style={{ padding: '25px', backgroundColor: '#000', minHeight: '100vh' }}>
-      <h2 style={{ fontSize: '24px', fontWeight: '900', fontStyle: 'italic', marginBottom: '25px', borderLeft: '3px solid #fff', paddingLeft: '15px' }}>ESTUDIO_CREATIVO</h2>
-      
+    <div style={{ padding: '20px', backgroundColor: '#000' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-        {tools.map(t => (
-          <Link key={t.link} href={t.link} style={{ textDecoration: 'none' }}>
-            <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #161616', padding: '15px', borderRadius: '15px', height: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <span style={{ fontSize: '7px', color: '#fff', backgroundColor: '#222', padding: '2px 5px', width: 'fit-content', borderRadius: '3px', marginBottom: '5px', fontWeight: 'bold' }}>{t.cat}</span>
-              <h3 style={{ color: '#fff', fontSize: '13px', fontWeight: '900', margin: 0 }}>{t.name}</h3>
-              <p style={{ color: '#444', fontSize: '9px', marginTop: '4px' }}>{t.desc}</p>
-            </div>
+        {tools.map((tool, i) => (
+          <Link href={tool.link} key={i} style={{ textDecoration: 'none', position: 'relative', height: '240px', borderRadius: '25px', overflow: 'hidden', border: '1px solid #161616', display: 'block' }}>
+            <img src={tool.img} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)' }} />
+            <span style={{ position: 'absolute', bottom: '15px', left: '15px', fontWeight: 'bold', fontSize: '13px', color: '#fff' }}>{tool.name}</span>
           </Link>
         ))}
       </div>
