@@ -1,23 +1,40 @@
-"use client"
-import Link from 'next/link';
+"use client";
+import { useRouter } from 'next/navigation';
 
 export default function StudioPage() {
-  const tools = [
-    { name: 'Photo Edit', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', link: '/editor' },
-    { name: 'CHIP_CHAT', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500', link: '/chat' },
-    { name: 'Cinematic Video', img: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500', link: '/video' },
-    { name: 'Face Swap', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500', link: '/faceswap' },
+  const router = useRouter();
+
+  const herramientas = [
+    { name: 'VISUAL_GEN', tag: 'IMAGE', desc: 'Generador de Imágenes', link: '/visual_gen', color: '#ff4d4d' },
+    { name: 'CINEMATIC_V2', tag: 'VIDEO', desc: 'Generador de Vídeo', link: '/video', color: '#a855f7' },
+    { name: 'CHIP_CHAT', tag: 'BRAIN', desc: 'IA Conversacional', link: '/chat', color: '#3b82f6' },
+    { name: 'FACE_SWAP', tag: 'ROSTROS', desc: 'Intercambio Viral', link: '/faceswap', color: '#ec4899' },
+    { name: 'MUSIC_GEN', tag: 'AUDIO', desc: 'Creador de Música', link: '/music', color: '#10b981' },
+    { name: 'REMASTER_4K', tag: 'CALIDAD', desc: 'Mejora de Imagen', link: '/remaster', color: '#f59e0b' },
   ];
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#000' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-        {tools.map((tool, i) => (
-          <Link href={tool.link} key={i} style={{ textDecoration: 'none', position: 'relative', height: '240px', borderRadius: '25px', overflow: 'hidden', border: '1px solid #161616', display: 'block' }}>
-            <img src={tool.img} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)' }} />
-            <span style={{ position: 'absolute', bottom: '15px', left: '15px', fontWeight: 'bold', fontSize: '13px', color: '#fff' }}>{tool.name}</span>
-          </Link>
+    <div style={{ padding: '25px', backgroundColor: '#000', minHeight: '100vh' }}>
+      <div style={{ marginBottom: '40px', borderLeft: '4px solid #fff', paddingLeft: '20px' }}>
+        <h1 style={{ fontSize: '28px', fontWeight: '900', color: '#fff', letterSpacing: '-1px' }}>ESTUDIO_CREATIVO</h1>
+        <p style={{ fontSize: '10px', color: '#444', fontWeight: 'bold', marginTop: '5px' }}>SISTEMA_DE_PRODUCCIÓN_IA_V2</p>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '15px' }}>
+        {herramientas.map((h) => (
+          <div 
+            key={h.name} 
+            onClick={() => router.push(h.link)}
+            style={{ backgroundColor: '#080808', border: '1px solid #111', borderRadius: '24px', padding: '20px', cursor: 'pointer' }}
+          >
+            <span style={{ fontSize: '8px', fontWeight: '900', color: h.color, border: `1px solid ${h.color}33`, padding: '4px 8px', borderRadius: '6px' }}>
+              {h.tag}
+            </span>
+            <div style={{ marginTop: '20px' }}>
+              <h3 style={{ fontSize: '15px', fontWeight: '900', color: '#fff' }}>{h.name}</h3>
+              <p style={{ fontSize: '9px', color: '#555', fontWeight: 'bold' }}>{h.desc}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
