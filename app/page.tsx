@@ -1,57 +1,74 @@
-import Link from 'next/link';
+"use client";
+
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div style={{
-      backgroundColor: '#000',
-      color: '#fff',
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'sans-serif',
-      textAlign: 'center',
-      margin: 0
-    }}>
-      <div style={{
-        padding: '10px 20px',
-        border: '1px solid #333',
-        borderRadius: '10px',
-        fontSize: '10px',
-        color: '#666',
-        marginBottom: '20px',
-        letterSpacing: '3px'
-      }}>SYSTEM_ONLINE</div>
-      
-      <h1 style={{
-        fontSize: '70px',
-        fontWeight: '900',
-        fontStyle: 'italic',
-        margin: '0',
-        lineHeight: '1'
-      }}>GREY IA</h1>
-      
-      <p style={{
-        color: '#888',
-        marginTop: '10px',
-        marginBottom: '40px',
-        fontSize: '14px',
-        letterSpacing: '2px'
-      }}>INTELIGENCIA PRIVADA v1.0</p>
+  const router = useRouter();
 
-      <Link href="/chat" style={{
-        backgroundColor: '#fff',
-        color: '#000',
-        padding: '15px 40px',
-        borderRadius: '5px',
-        fontWeight: '900',
-        textDecoration: 'none',
-        fontSize: '12px',
-        transition: '0.3s'
-      }}>
-        INICIAR SISTEMA
-      </Link>
-    </div>
+  return (
+    <main className="min-h-screen bg-black text-white flex items-center justify-center px-6">
+      <div className="w-full max-w-md text-center">
+
+        {/* LOGO CREI */}
+        <div className="mb-12">
+          <div className="inline-flex items-center justify-center">
+            <div className="text-7xl font-black tracking-[-0.08em] leading-none">
+              CREI
+            </div>
+          </div>
+
+          <div className="mt-3 text-xs tracking-[0.35em] text-white/40 uppercase">
+            Inteligencia creativa
+          </div>
+        </div>
+
+        {/* BOTONES */}
+        <div className="space-y-3">
+
+          <button
+            onClick={() => router.push("/auth/google")}
+            className="w-full h-14 rounded-2xl bg-white text-black font-semibold
+                       flex items-center justify-center gap-3
+                       hover:bg-white/90 active:scale-[0.98] transition"
+          >
+            <span className="text-lg font-bold">G</span>
+            Continuar con Google
+          </button>
+
+          <button
+            onClick={() => router.push("/auth/apple")}
+            className="w-full h-14 rounded-2xl bg-white text-black font-semibold
+                       flex items-center justify-center gap-3
+                       hover:bg-white/90 active:scale-[0.98] transition"
+          >
+            <span className="text-xl">●</span>
+            Continuar con Apple
+          </button>
+
+          <button
+            onClick={() => router.push("/auth/email")}
+            className="w-full h-14 rounded-2xl border border-white/20
+                       bg-white/[0.06] text-white font-semibold
+                       flex items-center justify-center
+                       hover:bg-white/[0.1] active:scale-[0.98] transition"
+          >
+            Continuar con correo electrónico
+          </button>
+
+        </div>
+
+        {/* INICIAR SESIÓN */}
+        <p className="mt-8 text-sm text-white/50">
+          ¿Ya tienes una cuenta?{" "}
+          <button
+            onClick={() => router.push("/login")}
+            className="text-white font-semibold hover:underline"
+          >
+            Iniciar sesión
+          </button>
+        </p>
+
+      </div>
+    </main>
   );
 }
