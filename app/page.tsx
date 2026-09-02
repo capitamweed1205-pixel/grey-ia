@@ -2,8 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+
 export default function Home() {
   const router = useRouter();
+
+  // Función para entrar directo (mientras configuras las APIs de Google/Apple)
+  const entrarDirecto = () => {
+    router.push("/chat");
+  };
 
   return (
     <main className="min-h-screen bg-black text-white flex items-center justify-center px-6">
@@ -13,7 +19,7 @@ export default function Home() {
         <div className="mb-14 flex justify-center">
           <div className="relative inline-flex items-end">
 
-            {/* Símbolo del logo */}
+            {/* Símbolo del logo (Punto blanco con brillo) */}
             <div className="absolute -left-5 -top-5 w-4 h-4 rounded-full bg-white shadow-[0_0_18px_rgba(255,255,255,0.45)]" />
 
             {/* GREY */}
@@ -51,8 +57,9 @@ export default function Home() {
         {/* BOTONES */}
         <div className="space-y-3">
 
+          {/* Botón Google - Conectado a NextAuth */}
           <button
-            onClick={() => router.push("/auth/google")}
+            onClick={() => signIn('google', { callbackUrl: '/chat' })}
             className="
               w-full h-14 rounded-2xl
               bg-white text-black
@@ -67,8 +74,9 @@ export default function Home() {
             Continuar con Google
           </button>
 
+          {/* Botón Apple - Conectado a NextAuth */}
           <button
-            onClick={() => router.push("/auth/apple")}
+            onClick={() => signIn('apple', { callbackUrl: '/chat' })}
             className="
               w-full h-14 rounded-2xl
               bg-white text-black
@@ -83,8 +91,9 @@ export default function Home() {
             Continuar con Apple
           </button>
 
+          {/* Botón Correo - Te lleva directo a tu Dashboard */}
           <button
-            onClick={() => router.push("/auth/email")}
+            onClick={entrarDirecto}
             className="
               w-full h-14 rounded-2xl
               border border-white/20
@@ -102,11 +111,11 @@ export default function Home() {
 
         </div>
 
-        {/* LOGIN */}
+        {/* LOGIN / FOOTER */}
         <p className="mt-8 text-sm text-white/50">
           ¿Ya tienes una cuenta?{" "}
           <button
-            onClick={() => router.push("/login")}
+            onClick={entrarDirecto}
             className="text-white font-semibold hover:underline"
           >
             Iniciar sesión
