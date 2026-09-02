@@ -10,32 +10,58 @@ export default function Home() {
       <div className="w-full max-w-md text-center">
 
         {/* LOGOTIPO GREY IA */}
-        <div className="mb-12">
-          <div
-            className="text-7xl sm:text-8xl font-black tracking-[-0.09em]
-                       leading-none select-none"
-          >
-            GREY
-          </div>
+        <div className="mb-14 flex justify-center">
+          <div className="relative inline-flex items-end">
 
-          <div
-            className="mt-1 text-2xl sm:text-3xl font-semibold
-                       tracking-[0.18em] text-white/90"
-          >
-            IA
-          </div>
+            {/* Símbolo del logo */}
+            <div className="absolute -left-5 -top-5 w-4 h-4 rounded-full bg-white shadow-[0_0_18px_rgba(255,255,255,0.45)]" />
 
-          <div className="mx-auto mt-5 h-px w-20 bg-white/30" />
+            {/* GREY */}
+            <div
+              className="
+                font-black
+                text-[68px]
+                sm:text-[78px]
+                leading-none
+                tracking-[-0.10em]
+                italic
+                select-none
+              "
+            >
+              GREY
+            </div>
+
+            {/* IA pequeño al lado */}
+            <div
+              className="
+                ml-3
+                mb-1
+                text-[15px]
+                font-bold
+                tracking-[0.18em]
+                text-white/70
+              "
+            >
+              IA
+            </div>
+
+          </div>
         </div>
 
-        {/* ACCESO */}
+        {/* BOTONES */}
         <div className="space-y-3">
 
           <button
             onClick={() => router.push("/auth/google")}
-            className="w-full h-14 rounded-2xl bg-white text-black
-                       font-semibold flex items-center justify-center gap-3
-                       hover:bg-white/90 active:scale-[0.98] transition"
+            className="
+              w-full h-14 rounded-2xl
+              bg-white text-black
+              font-semibold
+              flex items-center justify-center gap-3
+              hover:bg-white/90
+              active:scale-[0.98]
+              transition
+            "
           >
             <span className="text-lg font-bold">G</span>
             Continuar con Google
@@ -43,9 +69,15 @@ export default function Home() {
 
           <button
             onClick={() => router.push("/auth/apple")}
-            className="w-full h-14 rounded-2xl bg-white text-black
-                       font-semibold flex items-center justify-center gap-3
-                       hover:bg-white/90 active:scale-[0.98] transition"
+            className="
+              w-full h-14 rounded-2xl
+              bg-white text-black
+              font-semibold
+              flex items-center justify-center gap-3
+              hover:bg-white/90
+              active:scale-[0.98]
+              transition
+            "
           >
             <span className="text-xl">●</span>
             Continuar con Apple
@@ -53,17 +85,24 @@ export default function Home() {
 
           <button
             onClick={() => router.push("/auth/email")}
-            className="w-full h-14 rounded-2xl border border-white/20
-                       bg-white/[0.06] text-white font-semibold
-                       flex items-center justify-center
-                       hover:bg-white/[0.10] active:scale-[0.98] transition"
+            className="
+              w-full h-14 rounded-2xl
+              border border-white/20
+              bg-white/[0.06]
+              text-white
+              font-semibold
+              flex items-center justify-center
+              hover:bg-white/[0.10]
+              active:scale-[0.98]
+              transition
+            "
           >
             Continuar con correo electrónico
           </button>
 
         </div>
 
-        {/* INICIAR SESIÓN */}
+        {/* LOGIN */}
         <p className="mt-8 text-sm text-white/50">
           ¿Ya tienes una cuenta?{" "}
           <button
